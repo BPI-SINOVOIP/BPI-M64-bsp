@@ -38,26 +38,21 @@ static void sunxi_board_type(void)
 
 	if(output_type == 1){
 		if(output_mode == 2){
-			setenv("bootenv_filename", "uEnv_lcd7.txt");
-			setenv("bootlogo_filename", "bootlogo_lcd7.bmp");
+			setenv("board_type", "lcd7");
 		}
 		if(output_mode == 5){
-			setenv("bootenv_filename", "uEnv_lcd5.txt");
-			setenv("bootlogo_filename", "bootlogo_lcd5.bmp");
+			setenv("board_type", "lcd5");
 		}
 	}
 	else if(output_type == 3){
 		if(output_mode == 2){
-			setenv("bootenv_filename", "uEnv_480p.txt");
-			setenv("bootlogo_filename", "bootlogo_480p.bmp");
+			setenv("board_type", "480p");
 		}
 		if(output_mode == 5){
-			setenv("bootenv_filename", "uEnv_720p.txt");
-			setenv("bootlogo_filename", "bootlogo_720p.bmp");
+			setenv("board_type", "720p");
 		}
 		if(output_mode == 10){
-			setenv("bootenv_filename", "uEnv_1080p.txt");
-			setenv("bootlogo_filename", "bootlogo_1080p.bmp");
+			setenv("board_type", "1080p");
 		}
 	}
 }

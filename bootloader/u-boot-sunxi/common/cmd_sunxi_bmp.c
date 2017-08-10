@@ -186,7 +186,7 @@ int sunxi_bmp_display(char *name)
 	char *bmp_buff = NULL;
 	int  ret = -1;
 	const char *sunxi_model;
-	const char *sunxi_logo;
+	const char *board_type;
 	//const size_t bmp_buff_len = 10<<20; //10M
 	//size_t file_size = 0;
 
@@ -206,8 +206,8 @@ int sunxi_bmp_display(char *name)
 	{
 		sunxi_model=getenv("board_model");
 		if(sunxi_model){
-			sunxi_logo=getenv("bootlogo_filename");
-			snprintf(bmp_name, 64, "/bananapi/%s/linux/%s", sunxi_model, sunxi_logo);
+			board_type=getenv("board_type");
+			snprintf(bmp_name, 64, "/bananapi/%s/linux/%s/%s", sunxi_model, board_type, name);
 		} else
 			snprintf(bmp_name, 64, "/boot/%s", name);
 		

@@ -1,6 +1,6 @@
 console=tty0 console=ttyS0,115200n8 no_console_suspend cma=256M loglevel=8
 kernel_filename=bananapi/bpi-m64/linux/Image
 initrd_filename=bananapi/bpi-m64/linux/initrd.img
-fdt_filename=bananapi/bpi-m64/linux/sun50i-a64-bpi-m64-720p.dtb
+fdt_filename=bananapi/bpi-m64/linux/480p/sun50i-a64-bpi-m64-480p.dtb
 
 optargs=disp.screen0_output_mode=1080p60

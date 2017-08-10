@@ -1710,6 +1710,12 @@
 			gpr_offset = <0x100>;
 			gpr_len = <0x4>;
 		};
+		
+		watchdog@01c20ca0 {
+            		compatible = "allwinner,sun50i-wdt";
+            		reg = <0x0 0x01c20ca0 0x0 0x20>;
+            		interrupts = <0x0 0x19 0x4>;
+        	};
 
 		ve@01c0e000 {
 			compatible = "allwinner,sunxi-cedar-ve";
@@ -2008,7 +2014,7 @@
 			compatible = "allwinner,sunxi-tdmhdmi";
 			reg = <0x0 0x1c22800 0x0 0x58>;
 			clocks = <0x2 0x48>;
-			status = "okay";
+			status = "disabled";
 			linux,phandle = <0x50>;
 			phandle = <0x50>;
 			device_type = "daudio2";
@@ -2057,7 +2063,7 @@
 		sound@3 {
 			compatible = "allwinner,sunxi-hdmi-machine";
 			sunxi,hdmi-controller = <0x50>;
-			status = "okay";
+			status = "disabled";
 			device_type = "sndhdmi";
 		};
 
@@ -2203,8 +2209,8 @@
 			disp_mode = <0x0>;
 			screen0_output_type = <0x1>;
 			screen0_output_mode = <0x2>;
-			screen1_output_type = <0x3>;
-			screen1_output_mode = <0x5>;
+			screen1_output_type = <0x1>;
+			screen1_output_mode = <0x2>;
 			fb0_format = <0x0>;
 			fb0_width = <0x0>;
 			fb0_height = <0x0>;
@@ -2269,7 +2275,7 @@
 			reg = <0x0 0x1ee0000 0x0 0x20000>;
 			clocks = <0x6f 0x70>;
 			device_type = "hdmi";
-			status = "okay";
+			status = "disabled";
 			hdmi_power = "vcc-hdmi-33";
 			hdmi_hdcp_enable = <0x0>;
 			hdmi_cts_compatibility = <0x0>;

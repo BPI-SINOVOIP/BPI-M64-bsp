@@ -1,7 +1,0 @@
-console=tty0 console=ttyS0,115200n8 no_console_suspend
-kernel_filename=bananapi/bpi-m64/linux/Image
-initrd_filename=bananapi/bpi-m64/linux/initrd.img
-fdt_filename=bananapi/bpi-m64/linux/sun50i-a64-bpi-m64-720p.dtb
-
-ethaddr=36:c9:e3:f1:b8:05
-optargs=disp.screen0_output_mode=1080p60

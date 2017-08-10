@@ -44,9 +44,20 @@ pack_boot()
   echo "pack boot"
 
   mkdir -p $B/bananapi/${TARGET_PRODUCT}/linux
-  cp -a $DTB/*.dtb $B/bananapi/${TARGET_PRODUCT}/linux/
   cp -a $ENV/* $B/bananapi/${TARGET_PRODUCT}/linux/
   cp -a $IMAGE/Image $B/bananapi/${TARGET_PRODUCT}/linux/Image
+
+  # copy each board dtb to target dir
+  if [ $TARGET_PRODUCT = "bpi-m64" ]; then
+    for files in $(ls -f $DTB/*.dtb)
+    do
+	name=${files%.*}
+	type=${name##*-}
+  	cp -a ${files} $B/bananapi/${TARGET_PRODUCT}/linux/${type}/
+    done
+  else
+	cp -a $ENV/* $B/bananapi/${TARGET_PRODUCT}/linux/
+  fi
 }
 
 pack_root()

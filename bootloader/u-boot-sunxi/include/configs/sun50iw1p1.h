@@ -352,7 +352,14 @@
 	"initrd_filename=initrd.img\0" \
 	"bootenv_filename=uEnv.txt\0" \
 	"load_bootenv=" \
-		"load mmc ${boot_part} ${load_addr} bananapi/${board_model}/linux/${bootenv_filename}\0" \
+	    "for envprefix in /bananapi/${board_model}/linux/${board_type}/ /bananapi/${board_model}/linux/ / /boot/; do " \
+	    	"if test -e mmc ${boot_part} ${envprefix}/${bootenv_filename}; then " \
+				"load mmc ${boot_part} ${load_addr} ${envprefix}${bootenv_filename}; " \
+				"run import_bootenv; " \
+				"echo Booting with uEnv.txt ...; " \
+				"run mmcboot; " \
+			"fi; " \
+		"done\0" \
 	"import_bootenv=" \
 		"env import -t ${load_addr} ${filesize}\0" \
 	"load_dtb=" \
@@ -380,8 +387,7 @@
 		"rootwait\0" \
 	"mmcbootcmd=" \
 		"if run load_bootenv; then " \
-			"echo Loading boot environment ...; " \
-			"run import_bootenv; " \
+			"echo uEnv.txt load failed: continuing ...; " \
 		"fi; " \
 		"run load_bootscript; " \
 		"echo Booting with defaults ...; " \

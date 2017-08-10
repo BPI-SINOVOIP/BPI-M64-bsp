@@ -1,0 +1,5 @@
+console=tty0 console=ttyS0,115200n8 no_console_suspend cma=256M loglevel=8 touch=ft5x_ts
+kernel_filename=bananapi/bpi-m64/linux/Image
+initrd_filename=bananapi/bpi-m64/linux/initrd.img
+fdt_filename=bananapi/bpi-m64/linux/lcd7/sun50i-a64-bpi-m64-lcd7.dtb
+
