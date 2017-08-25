@@ -1,26 +1,13 @@
 #!/bin/bash
 
-die() {
-        echo "$*" >&2
-        exit 1
-}
-
-[ -s "./env.sh" ] || die "please run ./configure first."
-
-set -e
-
-. ./env.sh
-
-DTB=$TOPDIR/bootloader
-ENV=$TOPDIR/sunxi-pack/allwinner/${MACH}/configs/${BOARD}
-IMAGE=$TOPDIR/linux-sunxi/arch/arm64/boot
-MODULES=$TOPDIR/linux-sunxi/output/lib/modules
-U=$TOPDIR/SD/${TARGET_PRODUCT}/100MB
-B=$TOPDIR/SD/${TARGET_PRODUCT}/BPI-BOOT
-R=$TOPDIR/SD/${TARGET_PRODUCT}/BPI-ROOT
-
 DEVICE=
 VARIANT=
+TARGET=SD/bpi-m64
+
+if [ ! -d ${TARGET} ]; then
+	echo -e "\033[31mNo download files exits, check build and pack. \033[0m"
+	exit 1
+fi
 
 echo "--------------------------------------------------------------------------------"
 echo "  1. HDMI 480P"
@@ -68,7 +55,7 @@ esac
 
 echo
 
-BOOTLOADER=SD/bpi-m64/100MB/u-boot-with-dtb-bpi-m64-${VARIANT}-8k.img.gz
+BOOTLOADER=${TARGET}/100MB/u-boot-with-dtb-bpi-m64-${VARIANT}-8k.img.gz
 
 ## download bootloader
 if [ ! -f ${BOOTLOADER} ]; then
@@ -84,7 +71,7 @@ echo "bootloader download finished"
 echo
 
 ## boot and root
-cd SD/bpi-m64/
+cd ${TARGET}
 if command -v bpi-update > /dev/null 2>&1; then
 	sudo bpi-update -d ${DEVICE}
 else
