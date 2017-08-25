@@ -2902,7 +2902,7 @@
 			clocks = <0x8f>;
 			clock-names = "gmac";
 			phy-mode = "rgmii";
-			tx-delay = <0x0>;
+			tx-delay = <0x4>;
 			rx-delay = <0x0>;
 			gmac_power1 = "vcc-gmac-33";
 			gmac_power3 = "axp81x_fldo1:1200000";
