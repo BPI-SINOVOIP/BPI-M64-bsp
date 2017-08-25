@@ -32,7 +32,7 @@ echo "	3. Build kernel only."
 echo "	4. kernel configure."
 echo "	5. Pack the builds to target download image, this step must execute after u-boot,"
 echo "	   kernel and rootfs build out"
-echo "	6. update files for SD"
+echo "	6. update local build to SD with bpi image flashed"
 echo "	7. Clean all build."
 echo "--------------------------------------------------------------------------------"
 
@@ -48,7 +48,6 @@ if [ -z "$mode" ]; then
         mode=1
 fi
 
-echo -e "\033[31m Now building...\033[0m"
 echo
 case $mode in
 	1) make && 
@@ -57,10 +56,8 @@ case $mode in
 	3) make kernel;;
 	4) make kernel-config;;
 	5) make pack;;
-	6) cp_download_files;;
+	6) make install;;
 	7) make clean;;
 esac
 echo
 
-echo -e "\033[31m Build success!\033[0m"
-echo
