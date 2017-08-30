@@ -40,7 +40,7 @@ if [ -z "$MODE" ]; then
 	read -p "Please choose a mode(1-7): " mode
 	echo
 else
-	mode=1
+	mode=$MODE
 fi
 
 if [ -z "$mode" ]; then
@@ -48,7 +48,6 @@ if [ -z "$mode" ]; then
         mode=1
 fi
 
-echo
 case $mode in
 	1) make && 
 	   make pack;; 
