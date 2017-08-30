@@ -19,7 +19,7 @@ Target download packages in SD/bpi-m64 after build. Please check the build.sh an
 ----------
 
 
-Get the image from [bpi](www.banana-pi.org/m64-download.html) and download it to the SD card. After finish, insert the SD card to PC
+Get the image from [bpi](http://www.banana-pi.org/m64-download.html) and download it to the SD card. After finish, insert the SD card to PC
 
     # ./build.sh 6
 
