@@ -3767,23 +3767,48 @@ static struct regval_list sensor_brightness_neg3_regs[] = {
 };
 
 static struct regval_list sensor_brightness_neg2_regs[] = {
-//NULL
+	{0x3a0f, 0x10},
+	{0x3a10, 0x08},
+	{0x3a11, 0x10},
+	{0x3a1b, 0x10},
+	{0x3a1e, 0x08},
+	{0x3a1f, 0x10},
 };
 
 static struct regval_list sensor_brightness_neg1_regs[] = {
-//NULL
+	{0x3a0f, 0x20},
+	{0x3a10, 0x18},
+	{0x3a11, 0x41},
+	{0x3a1b, 0x20},
+	{0x3a1e, 0x18},
+	{0x3a1f, 0x10},
 };
 
 static struct regval_list sensor_brightness_zero_regs[] = {
-//NULL
+	{0x3a0f, 0x38},
+	{0x3a10, 0x30},
+	{0x3a11, 0x61},
+	{0x3a1b, 0x38},
+	{0x3a1e, 0x30},
+	{0x3a1f, 0x10},
 };
 
 static struct regval_list sensor_brightness_pos1_regs[] = {
-//NULL
+	{0x3a0f, 0x50},
+	{0x3a10, 0x48},
+	{0x3a11, 0x90},
+	{0x3a1b, 0x50},
+	{0x3a1e, 0x48},
+	{0x3a1f, 0x20},
 };
 
 static struct regval_list sensor_brightness_pos2_regs[] = {
-//NULL
+	{0x3a0f, 0x60},
+	{0x3a10, 0x58},
+	{0x3a11, 0xa0},
+	{0x3a1b, 0x60},
+	{0x3a1e, 0x58},
+	{0x3a1f, 0x20},
 };
 
 static struct regval_list sensor_brightness_pos3_regs[] = {
@@ -3833,6 +3858,78 @@ static struct cfg_array sensor_brightness[] = {
 	},
 };
 
+static struct regval_list sensor_sharpness_lv0_regs[] = {
+	{0x5308,0x65},
+	{0x5502,0x00},
+};
+
+static struct regval_list sensor_sharpness_lv1_regs[] = {
+	{0x5308,0x65},
+	{0x5502,0x02},
+};
+
+static struct regval_list sensor_sharpness_default_lv2_regs[] = {
+	{0x5308,0x65},
+	{0x5502,0x04},
+};
+
+static struct regval_list sensor_sharpness_lv3_regs[] = {
+	{0x5308,0x65},
+	{0x5502,0x08},
+};
+
+static struct regval_list sensor_sharpness_lv4_regs[] = {
+	{0x5308,0x65},
+	{0x5502,0x10},
+};
+
+static struct regval_list sensor_sharpness_lv5_regs[] = {
+	{0x5308,0x65},
+	{0x5502,0x00},
+};
+
+static struct regval_list sensor_framerate_5_regs[] = {
+	{0x3036, 0x34},		/* PLL Mult 4~252 0:7  0x34=52=328Mhz */
+	{0x380c, 0x19},		/*Total X  6600 */
+	{0x380d, 0xc8},
+};
+
+static struct regval_list sensor_framerate_7_regs[] = {
+	{0x3036, 0x48},		/* PLL Mult 4~252 0:7  0x48=72=473Mhz */
+	{0x380c, 0x19},		/*Total X  6600 */
+	{0x380d, 0xc8},
+};
+
+static struct regval_list sensor_framerate_10_regs[] = {
+	{0x3036, 0x68},		/* PLL Mult 4~252 0:7  0x68=104=676Mhz */
+	{0x380c, 0x19},		/*Total X  6600 */
+	{0x380d, 0xc8},
+};
+
+static struct regval_list sensor_framerate_15_regs[] = {
+	{0x3036, 0x68},		/* PLL Mult 4~252 0:7  0x68=104=676Mhz */
+	{0x380c, 0x11},		/*Total X  4400 */
+	{0x380d, 0x30},
+};
+
+static struct regval_list sensor_framerate_20_regs[] = {
+	{0x3036, 0x68},		/* PLL Mult 4~252 0:7  0x68=104=676Mhz */
+	{0x380c, 0x0c},		/*Total X  3300 */
+	{0x380d, 0xe4},
+};
+
+static struct regval_list sensor_framerate_25_regs[] = {
+	{0x3036, 0x68},		/* PLL Mult 4~252 0:7  0x68=104=676Mhz */
+	{0x380c, 0x0a},		/*Total X  2640 */
+	{0x380d, 0x50},
+};
+
+static struct regval_list sensor_framerate_30_regs[] = {
+	{0x3036, 0x68},		/* PLL Mult 4~252 0:7  0x68=104=676Mhz */
+	{0x380c, 0x08},		/*Total X  2200 */
+	{0x380d, 0x98},
+};
+
 /*
  * The contrast setttings
  */
@@ -3845,27 +3942,53 @@ static struct regval_list sensor_contrast_neg3_regs[] = {
 };
 
 static struct regval_list sensor_contrast_neg2_regs[] = {
-//NULL
+	{0x5001, 0xab},		/*80 80 */
+	{0x5580, 0x06},		/*04 04
+				   ;Enable BIT2 for contrast/brightness control */
+	{0x5586, 0x18},		/*Gain */
+	{0x5585, 0x18},		/*Offset */
+	{0x5588, 0x01},		/*00 04 ;Offset sign */
 };
 
 static struct regval_list sensor_contrast_neg1_regs[] = {
-//NULL
+	{0x5001, 0xab},		/*80 80 */
+	{0x5580, 0x06},		/*04 04
+				   ;Enable BIT2 for contrast/brightness control */
+	{0x5586, 0x1c},		/*Gain */
+	{0x5585, 0x1c},		/*Offset */
+	{0x5588, 0x01},		/*00 04 ;Offset sign */
 };
 
 static struct regval_list sensor_contrast_zero_regs[] = {
-//NULL
+	{0x5001, 0xab},		
+	{0x5580, 0x06},		
+	{0x5586, 0x20},		
+	{0x5585, 0x00},		
+	{0x5588, 0x01},
 };
 
 static struct regval_list sensor_contrast_pos1_regs[] = {
-//NULL
+	{0x5001, 0xab},
+	{0x5580, 0x06},
+	{0x5586, 0x24},
+	{0x5585, 0x10},
+	{0x5588, 0x01},
 };
 
 static struct regval_list sensor_contrast_pos2_regs[] = {
-//NULL
+	{0x5001, 0xab},
+	{0x5580, 0x06},
+	{0x5586, 0x28},
+	{0x5585, 0x18},
+	{0x5588, 0x01},
 };
 
 static struct regval_list sensor_contrast_pos3_regs[] = {
-//NULL
+	{0x5001, 0xab},
+	{0x5580, 0x06},
+	{0x5586, 0x2c},
+	{0x5585, 0x1c},
+	{0x5588, 0x01},
 };
 
 static struct regval_list sensor_contrast_pos4_regs[] = {
@@ -3919,27 +4042,51 @@ static struct regval_list sensor_saturation_neg4_regs[] = {
 };
 
 static struct regval_list sensor_saturation_neg3_regs[] = {
-//NULL
+	{0x5001, 0xab},		/* 80 80  SDE_En */
+	{0x5583, 0x20},
+	{0x5584, 0x20},
+	{0x5580, 0x02},		/* 00 02 */
+	{0x5588, 0x41},		/* 40 40 */
 };
 
 static struct regval_list sensor_saturation_neg2_regs[] = {
-//NULL
+	{0x5001, 0xab},		/* 80 80  SDE_En */
+	{0x5583, 0x30},
+	{0x5584, 0x30},
+	{0x5580, 0x02},		/* 00 02 */
+	{0x5588, 0x41},		/* 40 40 */
 };
 
 static struct regval_list sensor_saturation_neg1_regs[] = {
-//NULL
+	{0x5001, 0xab},		/* 80 80  SDE_En */
+	{0x5583, 0x40},
+	{0x5584, 0x40},
+	{0x5580, 0x02},		/* 00 02 */
+	{0x5588, 0x41},		/* 40 40 */
 };
 
 static struct regval_list sensor_saturation_zero_regs[] = {
-//NULL
+	{0x5001, 0xab},		/* 80 80  SDE_En */
+	{0x5583, 0x40},
+	{0x5584, 0x40},
+	{0x5580, 0x00},		/* 00 02 */
+	{0x5588, 0x41},		/* 40 40 */
 };
 
 static struct regval_list sensor_saturation_pos1_regs[] = {
-//NULL
+	{0x5001, 0xab},		/* 80 80  SDE_En */
+	{0x5583, 0x50},
+	{0x5584, 0x50},
+	{0x5580, 0x02},		/* 00 02 */
+	{0x5588, 0x41},		/* 40 40 */
 };
 
 static struct regval_list sensor_saturation_pos2_regs[] = {
-//NULL
+	{0x5001, 0xab},		/* 80 80  SDE_En */
+	{0x5583, 0x60},
+	{0x5584, 0x60},
+	{0x5580, 0x02},		/* 00 02 */
+	{0x5588, 0x41},		/* 40 40 */
 };
 
 static struct regval_list sensor_saturation_pos3_regs[] = {
@@ -5083,9 +5230,11 @@ static int sensor_g_hflip(struct v4l2_subdev *sd, __s32 * value)
     LOG_ERR_RET(sensor_read(sd, 0x3821, &rdval))
 
     rdval &= (1 << 1);
+    *value = rdval;
     rdval >>= 1;
 
-    *value = rdval;
+    info->vflip = *value;
+	
 #if(DEV_DBG_EN == 1)
     vfe_dev_print("sensor_g_hflip  = %d\n", rdval);
 #endif
@@ -5097,6 +5246,10 @@ static int sensor_s_hflip(struct v4l2_subdev *sd, int value)
 {
     struct sensor_info *info = to_state(sd);
     data_type rdval;
+
+#if(DEV_DBG_EN == 1)
+	vfe_dev_print("sensor_s_hflip, info->hflip = %d\n", info->hflip);
+#endif
 
     if (info->hflip == value)
         return 0;
@@ -5149,6 +5302,10 @@ static int sensor_s_vflip(struct v4l2_subdev *sd, int value)
 {
     struct sensor_info *info = to_state(sd);
     data_type rdval;
+	
+#if(DEV_DBG_EN == 1)
+	vfe_dev_print("sensor_s_vflip, info->vflip = %d\n", info->vflip);
+#endif
 
     if (info->vflip == value)
         return 0;
@@ -5379,6 +5536,94 @@ static int sensor_s_band_filter(struct v4l2_subdev *sd, enum v4l2_power_line_fre
     //msleep(10);
     info->band_filter = value;
     return 0;
+}
+
+static int sensor_g_sharpness(struct v4l2_subdev *sd, __s32 * value)
+{
+    struct sensor_info *info = to_state(sd);
+
+    *value = info->sharpness;
+    return 0;
+}
+
+static int sensor_s_sharpness(struct v4l2_subdev *sd, int value)
+{
+    struct sensor_info *info = to_state(sd);
+
+    if (info->sharpness == value)
+        return 0;
+
+    if (value < 0 || value > 200)
+        return -ERANGE;
+
+	info->sharpness = value;
+
+	switch(info->sharpness) {
+		case 0:
+			sensor_write_array(sd, sensor_sharpness_lv0_regs, ARRAY_SIZE(sensor_sharpness_lv0_regs));
+			 break;
+
+		case 200:
+			sensor_write_array(sd, sensor_sharpness_lv3_regs, ARRAY_SIZE(sensor_sharpness_lv3_regs));
+			 break;
+
+		default:
+			sensor_write_array(sd, sensor_sharpness_default_lv2_regs, ARRAY_SIZE(sensor_sharpness_default_lv2_regs));
+			 break;
+	}
+	
+    return 0;
+}
+
+static int sensor_g_framerate(struct v4l2_subdev *sd, __s32 * value)
+{
+    struct sensor_info *info = to_state(sd);
+
+    *value = info->framerate;
+    return 0;
+}
+
+static int sensor_s_framerate(struct v4l2_subdev *sd, int value)
+{
+    struct sensor_info *info = to_state(sd);
+
+	if (info->framerate == value)
+        return 0;
+
+	vfe_dev_dbg("sensor_s_framerate value=%d FRAME_RATE_30=%d\n", value, FRAME_RATE_30);
+
+    if (value > FRAME_RATE_30)
+        return -ERANGE;
+
+	info->framerate = value;
+
+	switch(info->framerate){
+		case FRAME_RATE_5:
+			sensor_write_array(sd, sensor_framerate_5_regs, ARRAY_SIZE(sensor_framerate_5_regs));
+			break;
+		case FRAME_RATE_7:
+			sensor_write_array(sd, sensor_framerate_7_regs, ARRAY_SIZE(sensor_framerate_7_regs));
+			break;
+		case FRAME_RATE_10:
+			sensor_write_array(sd, sensor_framerate_10_regs, ARRAY_SIZE(sensor_framerate_10_regs));
+			break;
+		case FRAME_RATE_15:
+			sensor_write_array(sd, sensor_framerate_15_regs, ARRAY_SIZE(sensor_framerate_15_regs));
+			break;
+		case FRAME_RATE_20:
+			sensor_write_array(sd, sensor_framerate_20_regs, ARRAY_SIZE(sensor_framerate_20_regs));
+			break;
+		case FRAME_RATE_25:
+			sensor_write_array(sd, sensor_framerate_25_regs, ARRAY_SIZE(sensor_framerate_25_regs));
+			break;
+		case FRAME_RATE_30:
+		case FRAME_RATE_AUTO:
+		default:
+			sensor_write_array(sd, sensor_framerate_30_regs, ARRAY_SIZE(sensor_framerate_30_regs));
+			break;
+	}
+	
+	return 0;
 }
 
 /* *********************************************end of ******************************************** */
@@ -5750,7 +5995,8 @@ static int sensor_init(struct v4l2_subdev *sd, u32 val)
     info->contrast = 0;
     info->saturation = 0;
     info->hue = 0;
-    info->hflip = 0;
+	info->sharpness = 0;
+    info->hflip = 1;
     info->vflip = 0;
     info->gain = 0;
     info->autogain = 1;
@@ -7167,59 +7413,65 @@ static int sensor_queryctrl(struct v4l2_subdev *sd, struct v4l2_queryctrl *qc)
     /* Fill in min, max, step and default value for these controls. */
     /* see include/linux/videodev2.h for details */
     /* see sensor_s_parm and sensor_g_parm for the meaning of value */
-    vfe_dev_dbg("sensor_queryctrl: %d\n",qc->id);
+    vfe_dev_dbg("sensor_queryctrl: %x\n",qc->id);
 
     switch (qc->id) {
-//      case V4L2_CID_BRIGHTNESS:
-//              return v4l2_ctrl_query_fill(qc, -4, 4, 1, 1);
-//      case V4L2_CID_CONTRAST:
-//              return v4l2_ctrl_query_fill(qc, -4, 4, 1, 1);
-//      case V4L2_CID_SATURATION:
-//              return v4l2_ctrl_query_fill(qc, -4, 4, 1, 1);
-//      case V4L2_CID_HUE:
-//              return v4l2_ctrl_query_fill(qc, -180, 180, 5, 0);
-    case V4L2_CID_VFLIP:
-    case V4L2_CID_HFLIP:
-        return v4l2_ctrl_query_fill(qc, 0, 1, 1, 0);
-//      case V4L2_CID_GAIN:
-//              return v4l2_ctrl_query_fill(qc, 0, 255, 1, 128);
-//      case V4L2_CID_AUTOGAIN:
-//              return v4l2_ctrl_query_fill(qc, 0, 1, 1, 1);
-    case V4L2_CID_EXPOSURE:
-    case V4L2_CID_AUTO_EXPOSURE_BIAS:
-        return v4l2_ctrl_query_fill(qc, -4, 4, 1, 0);
-    case V4L2_CID_EXPOSURE_AUTO:
-        return v4l2_ctrl_query_fill(qc, 0, 1, 1, 0);
-    case V4L2_CID_AUTO_N_PRESET_WHITE_BALANCE:
-        return v4l2_ctrl_query_fill(qc, 0, 9, 1, 1);
-    case V4L2_CID_AUTO_WHITE_BALANCE:
-        return v4l2_ctrl_query_fill(qc, 0, 1, 1, 1);
-    case V4L2_CID_COLORFX:
-        return v4l2_ctrl_query_fill(qc, 0, 15, 1, 0);
-    case V4L2_CID_FLASH_LED_MODE:
-        return v4l2_ctrl_query_fill(qc, 0, 4, 1, 0);
-
-    case V4L2_CID_3A_LOCK:
-        return v4l2_ctrl_query_fill(qc, 0, V4L2_LOCK_FOCUS, 1, 0);
-//      case V4L2_CID_AUTO_FOCUS_RANGE:
-//              return v4l2_ctrl_query_fill(qc, 0, 0, 0, 0);//only auto
-    case V4L2_CID_AUTO_FOCUS_INIT:
-    case V4L2_CID_AUTO_FOCUS_RELEASE:
-    case V4L2_CID_AUTO_FOCUS_START:
-    case V4L2_CID_AUTO_FOCUS_STOP:
-    case V4L2_CID_AUTO_FOCUS_STATUS:
-        return v4l2_ctrl_query_fill(qc, 0, 0, 0, 0);
-    case V4L2_CID_FOCUS_AUTO:
-        return v4l2_ctrl_query_fill(qc, 0, 1, 1, 0);
+      case V4L2_CID_BRIGHTNESS:
+          return v4l2_ctrl_query_fill(qc, -4, 4, 1, 1);
+      case V4L2_CID_CONTRAST:
+          return v4l2_ctrl_query_fill(qc, -4, 4, 1, 1);
+      case V4L2_CID_SATURATION:
+          return v4l2_ctrl_query_fill(qc, -4, 4, 1, 1);
+      case V4L2_CID_HUE:
+          return v4l2_ctrl_query_fill(qc, -180, 180, 5, 0);
+      case V4L2_CID_VFLIP:
+      case V4L2_CID_HFLIP:
+          return v4l2_ctrl_query_fill(qc, 0, 1, 1, 0);
+      case V4L2_CID_GAIN:
+          return v4l2_ctrl_query_fill(qc, 0, 255, 1, 128);
+      case V4L2_CID_AUTOGAIN:
+          return v4l2_ctrl_query_fill(qc, 0, 1, 1, 1);
+      case V4L2_CID_EXPOSURE:
+      case V4L2_CID_AUTO_EXPOSURE_BIAS:
+          return v4l2_ctrl_query_fill(qc, -4, 4, 1, 0);
+      case V4L2_CID_EXPOSURE_AUTO:
+          return v4l2_ctrl_query_fill(qc, 0, 3, 1, 0);
+      case V4L2_CID_AUTO_N_PRESET_WHITE_BALANCE:
+          return v4l2_ctrl_query_fill(qc, 0, 9, 1, 1);
+      case V4L2_CID_AUTO_WHITE_BALANCE:
+          return v4l2_ctrl_query_fill(qc, 0, 1, 1, 1);
+      case V4L2_CID_COLORFX:
+          return v4l2_ctrl_query_fill(qc, 0, 15, 1, 0);
+      case V4L2_CID_FLASH_LED_MODE:
+          return v4l2_ctrl_query_fill(qc, 0, 4, 1, 0);
+  	  case V4L2_CID_POWER_LINE_FREQUENCY:
+	  	  return v4l2_ctrl_query_fill(qc, 0, 3, 1, 0);
+	  case V4L2_CID_SHARPNESS:
+	  	  return v4l2_ctrl_query_fill(qc, 0, 200, 100, 0);
+	  case V4L2_CID_FRAME_RATE:
+	  	  return v4l2_ctrl_query_fill(qc, FRAME_RATE_AUTO, FRAME_RATE_30, 1, FRAME_RATE_AUTO);
+      case V4L2_CID_3A_LOCK:
+          return v4l2_ctrl_query_fill(qc, 0, V4L2_LOCK_FOCUS, 1, 0);
+//    case V4L2_CID_AUTO_FOCUS_RANGE:
+//        return v4l2_ctrl_query_fill(qc, 0, 0, 0, 0);//only auto
+      case V4L2_CID_AUTO_FOCUS_INIT:
+      case V4L2_CID_AUTO_FOCUS_RELEASE:
+      case V4L2_CID_AUTO_FOCUS_START:
+      case V4L2_CID_AUTO_FOCUS_STOP:
+      case V4L2_CID_AUTO_FOCUS_STATUS:
+          return v4l2_ctrl_query_fill(qc, 0, 0, 0, 0);
+      case V4L2_CID_FOCUS_AUTO:
+          return v4l2_ctrl_query_fill(qc, 0, 1, 1, 0);
     }
-    vfe_dev_dbg("sensor_queryctrl: %d *** EINVAL ***\n",qc->id);
+	
+    vfe_dev_dbg("sensor_queryctrl: %x *** EINVAL ***\n",qc->id);
     return -EINVAL;
 }
 
 
 static int sensor_g_ctrl(struct v4l2_subdev *sd, struct v4l2_control *ctrl)
 {
-    vfe_dev_dbg("sensor_g_ctrl id: %d\n",ctrl->id);
+    vfe_dev_dbg("sensor_g_ctrl id: %x\n",ctrl->id);
 
     switch (ctrl->id) {
     case V4L2_CID_BRIGHTNESS:
@@ -7253,7 +7505,10 @@ static int sensor_g_ctrl(struct v4l2_subdev *sd, struct v4l2_control *ctrl)
         return sensor_g_flash_mode(sd, &ctrl->value);
     case V4L2_CID_POWER_LINE_FREQUENCY:
         return sensor_g_band_filter(sd, &ctrl->value);
-
+	case V4L2_CID_SHARPNESS:
+		return sensor_g_sharpness(sd, &ctrl->value);
+	case V4L2_CID_FRAME_RATE:
+		return sensor_g_framerate(sd, &ctrl->value);
     case V4L2_CID_3A_LOCK:
         return sensor_g_3a_lock(sd);
 //  case V4L2_CID_AUTO_FOCUS_RANGE:
@@ -7267,7 +7522,7 @@ static int sensor_g_ctrl(struct v4l2_subdev *sd, struct v4l2_control *ctrl)
         return sensor_g_af_status(sd);
 //  case V4L2_CID_FOCUS_AUTO:
     }
-    vfe_dev_dbg("sensor_g_ctrl id: %d *** EINVAL ***\n",ctrl->id);
+    vfe_dev_dbg("sensor_g_ctrl id: %x *** EINVAL ***\n",ctrl->id);
     return -EINVAL;
 }
 
@@ -7276,7 +7531,7 @@ static int sensor_s_ctrl(struct v4l2_subdev *sd, struct v4l2_control *ctrl)
     struct v4l2_queryctrl qc;
     int ret;
 
-    vfe_dev_dbg("sensor_s_ctrl id: %d - value: %d\n",ctrl->id, (int)ctrl->value);
+    vfe_dev_dbg("sensor_s_ctrl id: %x - value: %d\n",ctrl->id, (int)ctrl->value);
 
     qc.id = ctrl->id;
     ret = sensor_queryctrl(sd, &qc);
@@ -7285,7 +7540,7 @@ static int sensor_s_ctrl(struct v4l2_subdev *sd, struct v4l2_control *ctrl)
     }
 
     if (qc.type == V4L2_CTRL_TYPE_MENU || qc.type == V4L2_CTRL_TYPE_INTEGER || qc.type == V4L2_CTRL_TYPE_BOOLEAN) {
-        if (ctrl->value < qc.minimum || ctrl->value > qc.maximum) {
+		if (ctrl->value < qc.minimum || ctrl->value > qc.maximum) {
             return -ERANGE;
         }
     }
@@ -7321,7 +7576,10 @@ static int sensor_s_ctrl(struct v4l2_subdev *sd, struct v4l2_control *ctrl)
         return sensor_s_flash_mode(sd, (enum v4l2_flash_led_mode) ctrl->value);
     case V4L2_CID_POWER_LINE_FREQUENCY:
         return sensor_s_band_filter(sd, (enum v4l2_power_line_frequency) ctrl->value);
-
+	case V4L2_CID_SHARPNESS:
+		return sensor_s_sharpness(sd, ctrl->value);
+	case V4L2_CID_FRAME_RATE:
+		return sensor_s_framerate(sd, ctrl->value);
     case V4L2_CID_3A_LOCK:
         return sensor_s_3a_lock(sd, ctrl->value);
 //    case V4L2_CID_AUTO_FOCUS_RANGE:
@@ -7338,10 +7596,10 @@ static int sensor_s_ctrl(struct v4l2_subdev *sd, struct v4l2_control *ctrl)
     case V4L2_CID_FOCUS_AUTO:
         return sensor_s_continueous_af(sd, ctrl->value);
     default:
-        vfe_dev_dbg("sensor_g_ctrl *** EINVAL\n");
+        vfe_dev_dbg("sensor_s_ctrl *** EINVAL\n");
         return -EINVAL;
     }
-    vfe_dev_dbg("sensor_g_ctrl *** EINVAL\n");
+    vfe_dev_dbg("sensor_s_ctrl *** EINVAL\n");
     return -EINVAL;
 }
 
