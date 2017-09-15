@@ -2436,11 +2436,11 @@
 				csi0_dev0_mname = "ov5640";
 				csi0_dev0_twi_addr = <0x78>;
 				csi0_dev0_pos = "rear";
-				csi0_dev0_isp_used = <0x1>;
+				csi0_dev0_isp_used = <0x0>;
 				csi0_dev0_fmt = <0x0>;
 				csi0_dev0_stby_mode = <0x0>;
 				csi0_dev0_vflip = <0x1>;
-				csi0_dev0_hflip = <0x1>;
+				csi0_dev0_hflip = <0x0>;
 				csi0_dev0_iovdd = "iovdd-csi";
 				csi0_dev0_iovdd_vol = <0x2ab980>;
 				csi0_dev0_avdd = "avdd-csi";
