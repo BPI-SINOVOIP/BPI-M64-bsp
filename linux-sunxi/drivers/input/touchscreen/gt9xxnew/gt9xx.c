@@ -2859,7 +2859,9 @@ static int goodix_ts_remove(struct i2c_client *client)
 
 	pm_runtime_disable(&client->dev);
 	pm_runtime_set_suspended(&client->dev);
-    
+
+	fb_unregister_client(&ts->fb_notif);
+	
 #if GTP_CREATE_WR_NODE
     uninit_wr_node();
 #endif
