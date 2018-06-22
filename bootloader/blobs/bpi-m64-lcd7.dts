@@ -3022,9 +3022,9 @@
 			compatible = "allwinner,sun50i-ctp-para";
 			status = "okay";
 			ctp_used = <0x01>;
-			ctp_name = "ft5x_ts";
+			ctp_name = "bpi_lcd7";
 			ctp_twi_id = <0x0>;
-			ctp_twi_addr = <0x38>;
+			ctp_twi_addr = <0x5d>;
 			ctp_screen_max_x = <0x320>;
 			ctp_screen_max_y = <0x1e0>;
 			ctp_revert_x_flag = <0x0>;
@@ -3044,7 +3044,7 @@
 			gslX680new = <0x0>;
 			gt9xx_ts = <0x0>;
 			gt9xxf_ts = <0x0>;
-			gt9xxnew_ts = <0x0>;
+			gt9xxnew_ts = <0x1>;
 			gt82x = <0x0>;
 			zet622x = <0x0>;
 			aw5306_ts = <0x0>;
@@ -3098,7 +3098,8 @@
 		gsensor_list {
 			device_type = "gsensor_list";
 			compatible = "allwinner,sun50i-gsensor-list-para";
-			gsensor_list__used = <0x0>;
+			gsensor_list_used = <0x0>;
+			status = "disabled";
 			lsm9ds0_acc_mag = <0x0>;
 			bma250 = <0x1>;
 			mma8452 = <0x0>;
