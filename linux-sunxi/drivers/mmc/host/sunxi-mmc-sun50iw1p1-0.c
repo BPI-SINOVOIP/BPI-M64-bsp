@@ -416,6 +416,13 @@ static int sunxi_mmc_oclk_onoff(struct sunxi_mmc_host *host, u32 oclk_en)
 }
 
 
+int sunxi_mmc_oclk_onoff_sdmmc0(struct sunxi_mmc_host *host, u32 oclk_en)
+{
+	return sunxi_mmc_oclk_onoff(host, oclk_en);
+}
+
+
+
 
 static  void sunxi_mmc_2xmod_onoff(struct sunxi_mmc_host* host, u32 newmode_en)
 {

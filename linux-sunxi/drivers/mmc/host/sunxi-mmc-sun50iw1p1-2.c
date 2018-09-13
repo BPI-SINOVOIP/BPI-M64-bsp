@@ -417,7 +417,7 @@ static void sunxi_mmc_set_clk_dly(struct sunxi_mmc_host *host,int clk,int bus_wi
 	u32 dat_drv_ph	= 0;
 	u32 sam_dly	= 0;
 	u32 ds_dly	= 0;
-
+	
 	if (!mmc->parent || !mmc->parent->of_node){
 		dev_err(mmc_dev(host->mmc), "no dts to parse clk dly,use default\n");
 		return ;
@@ -603,7 +603,7 @@ static int __sunxi_mmc_do_oclk_onoff(struct sunxi_mmc_host *host, u32 oclk_en,u3
 
 	/*only use mask data0 when update clk,clear it when not update clk*/
 	if(ignore_dat0)
-		mmc_writel(host, REG_CLKCR,
+		mmc_writel(host, REG_CLKCR, 
 			mmc_readl(host, REG_CLKCR)&~SDXC_MASK_DATA0);
 
 	return 0;
@@ -626,6 +626,16 @@ static int sunxi_mmc_oclk_onoff(struct sunxi_mmc_host *host, u32 oclk_en)
 		pwr_save = 1;
 	return __sunxi_mmc_do_oclk_onoff(host,oclk_en,pwr_save,1);
 }
+
+
+int sunxi_mmc_oclk_onoff_sdmmc2(struct sunxi_mmc_host *host, u32 oclk_en)
+{
+	return sunxi_mmc_oclk_onoff(host, oclk_en);
+}
+
+
+
+
 int sunxi_mmc_clk_set_rate_for_sdmmc2(struct sunxi_mmc_host *host,
 				  struct mmc_ios *ios)
 {
@@ -831,6 +841,7 @@ void sunxi_mmc_restore_spec_reg2(struct sunxi_mmc_host *host)
 
 
 
+/*
 extern int mmc_go_idle(struct mmc_host *host);
 extern int mmc_send_op_cond(struct mmc_host *host, u32 ocr, u32 *rocr);
 extern int mmc_send_status(struct mmc_card *card, u32 *status);
@@ -867,7 +878,6 @@ void sunxi_mmc_do_shutdown2(struct platform_device * pdev)
          goto out;
     }
 
-#if 0
 	//claim host to not allow androd read/write during shutdown
 	dev_dbg(mmc_dev(mmc),"%s: claim host\n", __FUNCTION__);
 	mmc_claim_host(mmc);
@@ -907,13 +917,13 @@ void sunxi_mmc_do_shutdown2(struct platform_device * pdev)
 
 	//do not release host to not allow android to read/write after shutdown
 	goto out;
-#endif
 
 out:
 	dev_info(mmc_dev(mmc),"%s: mmc shutdown exit..ok\n", __FUNCTION__);
 
 	return ;
 }
+*/
 
 int mmc_card_sleep(struct mmc_host *host);
 int mmc_deselect_cards(struct mmc_host *host);
@@ -990,7 +1000,7 @@ static int sunxi_mmc_suspend(struct mmc_host *host, bool is_suspend)
 	}
 
 	err = mmc_flush_cache(host->card);
-
+	
 	if (err)
 		goto out;
 
@@ -1017,7 +1027,6 @@ out:
 
 
 
-/*
 void sunxi_mmc_do_shutdown2(struct platform_device * pdev)
 {
 	struct mmc_host *mmc = platform_get_drvdata(pdev);
@@ -1029,7 +1038,6 @@ void sunxi_mmc_do_shutdown2(struct platform_device * pdev)
 		sunxi_mmc_suspend(mmc ,false);
 	}
 }
-*/
 
 
 #endif

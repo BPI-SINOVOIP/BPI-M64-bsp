@@ -26,7 +26,7 @@
 
 
 #define DRIVER_NAME "sunxi-mmc"
-#define DRIVER_RIVISION "v0.20 2015-7-13 16:28"
+#define DRIVER_RIVISION "v0.63 2016-10-13 13:39-patch201611081726"
 #define DRIVER_VERSION "SD/MMC/SDIO Host Controller Driver(" DRIVER_RIVISION ")" \
 			" Compiled in " __DATE__ " at " __TIME__""
 
@@ -268,6 +268,7 @@ struct sunxi_mmc_host {
 
 	struct mmc_request *mrq;
 	struct mmc_request *mrq_busy;
+	struct mmc_request *mrq_retry;
 	struct mmc_request *manual_stop_mrq;
 	int		ferror;
 
@@ -292,12 +293,30 @@ struct sunxi_mmc_host {
 	void (*sunxi_mmc_set_acmda)(struct sunxi_mmc_host *host);
 
 	void (*sunxi_mmc_shutdown)(struct platform_device * pdev);
+	int (*sunxi_mmc_oclk_en)(struct sunxi_mmc_host *host , u32 oclk_en);
 
 	/*really controller id,no logic id*/
 	int phy_index;
 
 	u32  dat3_imask;
+
+
+	/*no wait busy if wrtie end, only for customer need*/
+	#define NO_MANUAL_WAIT_BUSY_WRITE_END  0x1
+	#define NO_REINIT_SHUTDOWN			   0x2
+	#define CARD_PWR_GPIO_HIGH_ACTIVE	   0x4
+	#define SUNXI_SC_EN_RETRY					0x8
+	u32 ctl_spec_cap;//control specal function control,for customer need
+
+	int card_pwr_gpio;
+
+	u32 retry_cnt;
+	u32 errno_retry;
+	int (*sunxi_mmc_judge_retry)(struct sunxi_mmc_host *host , struct mmc_command *cmd , u32 rcnt , u32 errno , void *other);
+
+	void *version_priv_dat;
 };
 
-
+void sunxi_mmc_set_a12a(struct sunxi_mmc_host *host);
+void sunxi_mmc_do_shutdown_com(struct platform_device *pdev);
 #endif

@@ -18,6 +18,7 @@ void sunxi_mmc_save_spec_reg2(struct sunxi_mmc_host *host);
 void sunxi_mmc_restore_spec_reg2(struct sunxi_mmc_host *host);
 void sunxi_mmc_dump_dly2(struct sunxi_mmc_host *host);
 void sunxi_mmc_do_shutdown2(struct platform_device * pdev);
+int sunxi_mmc_oclk_onoff_sdmmc2(struct sunxi_mmc_host *host, u32 oclk_en);
 
 #endif
 

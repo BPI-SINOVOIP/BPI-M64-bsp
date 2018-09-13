@@ -17,6 +17,7 @@ extern void sunxi_mmc_thld_ctl_for_sdmmc0(struct sunxi_mmc_host *host,
 
 void sunxi_mmc_save_spec_reg0(struct sunxi_mmc_host *host);
 void sunxi_mmc_restore_spec_reg0(struct sunxi_mmc_host *host);
+int sunxi_mmc_oclk_onoff_sdmmc0(struct sunxi_mmc_host *host, u32 oclk_en);
 #endif
 
 #endif

@@ -350,6 +350,7 @@ void mmc_of_parse(struct mmc_host *host)
 
 	/* f_max is obtained from the optional "max-frequency" property */
 	of_property_read_u32(np, "max-frequency", &host->f_max);
+	of_property_read_u32(np, "min-frequency", &host->f_min);
 
 	/*
 	 * Configure CD and WP pins. They are both by default active low to
@@ -461,6 +462,9 @@ void mmc_of_parse(struct mmc_host *host)
 		host->caps2 |= MMC_CAP2_HS400_1_8V | MMC_CAP2_HS200_1_8V_SDR;
 	if (of_find_property(np, "mmc-hs400-1_2v", &len))
 		host->caps2 |= MMC_CAP2_HS400_1_2V | MMC_CAP2_HS200_1_2V_SDR;
+
+	if (of_find_property(np, "mmc-cache-ctrl", &len))
+		host->caps2 |= MMC_CAP2_CACHE_CTRL;	
 }
 
 EXPORT_SYMBOL(mmc_of_parse);

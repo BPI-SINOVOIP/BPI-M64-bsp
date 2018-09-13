@@ -26,7 +26,7 @@
 
 
 #define DRIVER_NAME "sunxi-smhc"
-#define DRIVER_RIVISION "v0.1 2015-7-21 9:55"
+#define DRIVER_RIVISION "v0.6 2016-4-29 16:53"
 #define DRIVER_VERSION "SD/MMC/SDIO Host Controller Driver(" DRIVER_RIVISION ")" \
 			" Compiled in " __DATE__ " at " __TIME__""
 
@@ -223,9 +223,7 @@
 #define NotIssueAcmd      (0x0<<0)
 	
 	
-	//#define SMHC_DES_NUM_SHIFT	(16)
-#define SMHC_DES_NUM_SHIFT	(15)
-#define SMHC_DES_BUFFER_MAX_LEN	(1U << SMHC_DES_NUM_SHIFT)
+
 	
 enum
 {
@@ -258,7 +256,14 @@ struct sdhc_idma_des{
 	
 	
 struct sunxi_mmc_ctrl_regs {
-
+	u32 rst_clk_ctrl;
+	u32 int_sta_en;
+	u32 to;
+	u32 ctrl3;
+	u32 int_sig_en;
+	u32 ctrl1;
+	u32 acmd_err_ctrl2;
+	u32 atc;
 };
 
 
@@ -325,6 +330,17 @@ struct sunxi_mmc_host {
 	int phy_index;
 
 	u32  dat3_imask;
+
+	/*no wait busy if wrtie end, only for customer need*/
+	#define NO_MANUAL_WAIT_BUSY_WRITE_END  0x1
+	#define NO_REINIT_SHUTDOWN			   0x2
+	#define CARD_PWR_GPIO_HIGH_ACTIVE	   0x4
+	/*control specal function control,for customer need*/
+	u32 ctl_spec_cap;
+
+	int card_pwr_gpio;
+
+	void *version_priv_dat;
 };
 
 

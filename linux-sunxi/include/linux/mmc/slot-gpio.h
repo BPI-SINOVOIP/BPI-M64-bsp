@@ -20,5 +20,8 @@ void mmc_gpio_free_ro(struct mmc_host *host);
 int mmc_gpio_get_cd(struct mmc_host *host);
 int mmc_gpio_request_cd(struct mmc_host *host, unsigned int gpio);
 void mmc_gpio_free_cd(struct mmc_host *host);
+void mmc_gpiod_request_cd_irq(struct mmc_host *host);
 
+void sunxi_mmc_gpio_suspend_cd(struct mmc_host *host);
+void sunxi_mmc_gpio_resume_cd(struct mmc_host *host);
 #endif
