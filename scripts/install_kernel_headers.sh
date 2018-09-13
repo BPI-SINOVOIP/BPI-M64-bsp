@@ -74,4 +74,10 @@ cp -a arch/$LINUX_ARCH/kernel/asm-offsets.s "$TARGET/arch/$LINUX_ARCH/kernel"
 rm -f "$TARGET/include/linux/version.h"
 cp -a .config "$TARGET/"
 
+# link source for module build
+rm $DEST/lib/modules/$VERSION/build
+rm $DEST/lib/modules/$VERSION/source
+ln -sf "/usr/src/linux-headers-$VERSION" "$DEST/lib/modules/$VERSION/build"
+ln -sf "/usr/src/linux-headers-$VERSION" "$DEST/lib/modules/$VERSION/source"
+
 echo "Done - installed Kernel headers to $DEST"
